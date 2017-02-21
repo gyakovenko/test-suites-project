@@ -51,7 +51,7 @@ public class BasicTest {
 		this.logger = logger;
 	}
 
-	@BeforeMethod // (enabled = false)
+	@BeforeMethod(groups = "chrome")
 	public void setUpChrome() {
 		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver");
 		this.driver = new ChromeDriver();
@@ -59,15 +59,15 @@ public class BasicTest {
 		this.driver.get(this.baseUrl);
 	}
 
-	@BeforeMethod(enabled = false)
+	@BeforeMethod(groups = "firefox")
 	public void setUpFirefox() {
 		this.driver = new FirefoxDriver();
 		this.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		this.driver.get(this.baseUrl);
 	}
 
-	@BeforeMethod(enabled = false) // doesnt work right now bc need later
-									// selenium or earlier safari
+	@BeforeMethod(groups = "safari") // doesnt work right now bc need later
+										// selenium or earlier safari
 	public void setUpSafari() {
 		this.driver = new SafariDriver();
 		this.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
